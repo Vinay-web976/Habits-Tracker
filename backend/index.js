@@ -1,13 +1,15 @@
 import express from "express";
-import { PORT, mongoDBUrl } from "./config.js";
+import { PORT } from "./config.js";
 import mongoose from "mongoose";
 import habitRoutes from "./routes/habitsRoutes.js";
 import dailyHabitRoutes from "./routes/dailyHabitRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import dotenv from "dotenv";
 import cors from "cors";
 
 const app = express();
 
+dotenv.config();
 app.use(express.json());
 
 app.use(
@@ -30,7 +32,7 @@ app.listen(PORT, () => {
 });
 
 mongoose
-  .connect(mongoDBUrl)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("app connected to mongo");
   })
