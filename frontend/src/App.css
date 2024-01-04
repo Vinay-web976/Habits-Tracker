@@ -1,0 +1,21 @@
+.react-calendar.habit-entry-calendar {
+  width: 100%;
+  margin-bottom: 60px;
+  background-color: rgb(17, 24, 39);
+  color: white;
+}
+
+.habit-entry-calendar button.react-calendar__tile {
+  padding: 2rem;
+}
+
+.habit-entry-calendar button.react-calendar__tile--now {
+  background: rgb(17, 24, 39);
+}
+
+.habit-entry-calendar button.react-calendar__tile:hover,
+.habit-entry-calendar button.react-calendar__tile--active,
+.habit-entry-calendar .react-calendar__navigation button:enabled:hover,
+.habit-entry-calendar .react-calendar__navigation button:enabled:focus {
+  background-color: rgb(17, 24, 49);
+}
