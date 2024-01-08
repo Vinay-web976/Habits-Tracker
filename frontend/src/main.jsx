@@ -6,7 +6,7 @@ import "./index.css";
 import Home from "./components/Home.jsx";
 import Entry from "./components/Entry.jsx";
 import Habits from "./components/Habits.jsx";
-import Login from "./components/Login.jsx";
+import AuthForm from "./components/AuthForm.jsx";
 
 const route = createBrowserRouter([
   {
@@ -26,8 +26,12 @@ const route = createBrowserRouter([
         element: <Habits />,
       },
       {
+        path: "/register",
+        element: <AuthForm isLoginPage={false} />,
+      },
+      {
         path: "/login",
-        element: <Login />,
+        element: <AuthForm isLoginPage={true} />,
       },
     ],
   },

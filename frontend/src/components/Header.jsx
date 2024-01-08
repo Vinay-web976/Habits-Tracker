@@ -38,10 +38,10 @@ const Header = () => {
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="h-8"
-            alt="Flowbite Logo"
+            alt="Habithub Logo"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Habits Tracker
+            HabitHub
           </span>
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">

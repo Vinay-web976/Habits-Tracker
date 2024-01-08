@@ -24,9 +24,12 @@ router.post("/register", async (req, res) => {
       fullName,
     };
 
-    await User.create(newUser);
-    res.status(201).json({ message: "User registered successfully" });
+    const user = await User.create(newUser);
+    res
+      .status(201)
+      .json({ message: "User registered successfully", userId: user._id });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
@@ -44,7 +47,7 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ token, userId: user._id });
+    res.status(200).json({ userId: user._id });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }

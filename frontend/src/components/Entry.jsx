@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Calender from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { apiBaseUrl } from "../../../backend/config";
+import { apiBaseUrl } from "../config";
 
 const Entry = () => {
   const [isDateSelected, setIsDateSelected] = useState(false);
@@ -61,7 +61,7 @@ const Entry = () => {
 
   const getTileContent = ({ date, view }) => {};
   return (
-    <div className="h-full">
+    <div className="pb-16">
       {!isDateSelected ? (
         <div>
           <h2 className="text-center text-3xl p-16">

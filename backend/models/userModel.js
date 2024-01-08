@@ -8,7 +8,6 @@ const userSchema = mongoose.Schema({
     {
       title: {
         type: String,
-        unique: true,
       },
       isCompleted: { type: Boolean, default: false }, // Assuming a default value
     },
