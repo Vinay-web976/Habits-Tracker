@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { apiBaseUrl, toastConfig } from "../config";
+import { AuthContext } from "./AuthProvider";
 
 const AuthForm = ({ isLoginPage }) => {
+  const { setUserId } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -41,9 +43,9 @@ const AuthForm = ({ isLoginPage }) => {
         userId = data.userId;
         toast.success("Yay!! You're registerd", toastConfig);
       }
-      sessionStorage.setItem("userId", userId);
+      sessionStorage.setItem("user-id", userId);
+      setUserId(userId);
       setFormData({ fullName: "", email: "", password: "" });
-      navigate("/home");
     } catch (error) {
       toast.error("Something went wrong!! Please try again");
     }

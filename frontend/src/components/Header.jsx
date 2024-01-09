@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { menuItems } from "../config";
+import { AuthContext } from "./AuthProvider";
 
 const Header = () => {
   const [navItems, setNavItems] = useState(menuItems);
+  const { userId, setUserId } = useContext(AuthContext);
   let currentPath = useLocation().pathname;
 
   useEffect(() => {
@@ -27,6 +29,11 @@ const Header = () => {
       }
     });
     setNavItems(items);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.setItem("user-id", null);
+    setUserId(null);
   };
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -53,6 +60,14 @@ const Header = () => {
                 </Link>
               </li>
             ))}
+            {userId && (
+              <li
+                className={getNavClasses({ isActive: false })}
+                onClick={handleLogout}
+              >
+                Logout
+              </li>
+            )}
           </ul>
         </div>
       </div>

@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Calender from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { apiBaseUrl } from "../config";
+import { AuthContext } from "./AuthProvider";
+import { getUserHabits } from "../services/data.service";
 
 const Entry = () => {
   const [isDateSelected, setIsDateSelected] = useState(false);
   const [dateSelected, setDateSelected] = useState(new Date());
   const [allHabits, setAllHabits] = useState([]);
+  const { userId } = useContext(AuthContext);
 
   useEffect(() => {
-    async function getHabits() {
-      const response = await axios.get(apiBaseUrl + "habits");
-      setAllHabits(response.data);
-    }
-    getHabits();
+    getUserHabits(userId)
+      .then((data) => {
+        setAllHabits(data);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   const handleDateSelect = async (date) => {
